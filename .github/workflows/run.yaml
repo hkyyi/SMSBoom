@@ -1,0 +1,17 @@
+name: Run SMSBoom in Action
+
+on: 
+  workflow_dispatch:
+  schedule:
+      - cron: '0 */2 * * *'
+
+jobs:
+  Run:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run SMSBoom Script
+        shell: cmd
+        run:
+          smsboom.exe run -t 64 ${{ secrets.NUMBER }} -f 60 -i 30
